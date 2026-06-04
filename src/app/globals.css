@@ -1,0 +1,41 @@
+@import "lenis/dist/lenis.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-ink/10 text-ink;
+  }
+
+  a {
+    @apply outline-none;
+  }
+
+  a:focus-visible {
+    @apply ring-1 ring-ink/20 ring-offset-2 ring-offset-canvas;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .hairline {
+    border-width: 0.5px;
+  }
+}
