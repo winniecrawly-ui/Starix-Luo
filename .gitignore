@@ -27,3 +27,12 @@ yarn-error.log*
 
 # env
 .env*.local
+
+# local / build junk
+tsconfig.tsbuildinfo
+
+# original scans, not used on the site
+*.tif
+*.tiff
+*.ARW
+*.arw

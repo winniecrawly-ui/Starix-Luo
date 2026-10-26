@@ -14,11 +14,33 @@ function IntrinsicImage({
   item,
   sizes,
   priority,
+  preserveAspect,
 }: {
   item: EditorialShot;
   sizes: string;
   priority?: boolean;
+  preserveAspect?: boolean;
 }) {
+  if (preserveAspect) {
+    // Bret Curry：与栏宽对齐，高度随原图比例变化。
+    return (
+      <div
+        className="relative w-full overflow-hidden bg-canvas"
+        style={{ aspectRatio: `${item.width} / ${item.height}` }}
+      >
+        <Image
+          src={item.src}
+          alt={item.alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          unoptimized
+          className="object-contain"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="w-full overflow-hidden bg-neutral-100">
       <Image
@@ -28,7 +50,8 @@ function IntrinsicImage({
         height={item.height}
         sizes={sizes}
         priority={priority}
-        className="h-auto w-full max-w-full grayscale contrast-[1.08] brightness-[0.98]"
+        quality={100}
+        className="h-auto w-full max-w-full"
       />
     </div>
   );
@@ -36,32 +59,41 @@ function IntrinsicImage({
 
 type EditorialGalleryProps = {
   shots: EditorialShot[];
-  /** 仅首张横幅请求优先加载 */
   priority?: boolean;
-  /**
-   * 套在「双竖图」栅格外层，用于相对横幅略收窄竖图区，让横幅在宽屏上更醒目。
-   */
+  preserveAspect?: boolean;
   twinRowWrapperClassName?: string;
+  className?: string;
 };
 
 function TwinRow({
   left,
   right,
   wrapperClassName,
+  preserveAspect,
 }: {
   left: EditorialShot;
   right: EditorialShot;
   wrapperClassName?: string;
+  preserveAspect?: boolean;
 }) {
   const grid = (
-    <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 md:gap-5 lg:gap-6">
+    <div
+      className={clsx(
+        "grid grid-cols-1 items-start min-[480px]:grid-cols-2",
+        preserveAspect
+          ? "gap-2.5 md:gap-3 lg:gap-3.5"
+          : "gap-3 md:gap-5 lg:gap-6",
+      )}
+    >
       <IntrinsicImage
         item={left}
         sizes="(min-width: 1280px) 40vw, (min-width: 480px) 50vw, 100vw"
+        preserveAspect={preserveAspect}
       />
       <IntrinsicImage
         item={right}
         sizes="(min-width: 1280px) 40vw, (min-width: 480px) 50vw, 100vw"
+        preserveAspect={preserveAspect}
       />
     </div>
   );
@@ -70,12 +102,14 @@ function TwinRow({
 }
 
 /**
- * Bret Curry 节奏：全宽横幅 → 两竖并列 → 全宽横幅；按 4 张一组循环，尾部不足 4 张时按顺序收尾。
+ * Bret Curry 节奏：全宽横幅 → 两竖并列 → 全宽横幅；按 4 张一组循环。
  */
 export function EditorialGallery({
   shots,
   priority = false,
+  preserveAspect = false,
   twinRowWrapperClassName,
+  className,
 }: EditorialGalleryProps) {
   const nodes: ReactNode[] = [];
   let i = 0;
@@ -90,6 +124,7 @@ export function EditorialGallery({
         item={item}
         sizes="(min-width: 1280px) 80vw, 100vw"
         priority={p}
+        preserveAspect={preserveAspect}
       />,
     );
   };
@@ -104,6 +139,7 @@ export function EditorialGallery({
           left={shots[i + 1]!}
           right={shots[i + 2]!}
           wrapperClassName={twinRowWrapperClassName}
+          preserveAspect={preserveAspect}
         />,
       );
       banner(shots[i + 3]!, `b-${shots[i + 3]!.id}`);
@@ -116,6 +152,7 @@ export function EditorialGallery({
           left={shots[i + 1]!}
           right={shots[i + 2]!}
           wrapperClassName={twinRowWrapperClassName}
+          preserveAspect={preserveAspect}
         />,
       );
       i += 3;
@@ -126,6 +163,7 @@ export function EditorialGallery({
           left={shots[i]!}
           right={shots[i + 1]!}
           wrapperClassName={twinRowWrapperClassName}
+          preserveAspect={preserveAspect}
         />,
       );
       i += 2;
@@ -138,7 +176,10 @@ export function EditorialGallery({
   return (
     <div
       className={clsx(
-        "flex flex-col gap-3 bg-canvas p-3 md:gap-5 md:p-6 lg:gap-6 lg:p-10",
+        preserveAspect
+          ? "flex flex-col gap-2.5 bg-canvas p-2.5 md:gap-3 md:p-4 lg:gap-3.5 lg:p-6"
+          : "flex flex-col gap-3 bg-canvas p-3 md:gap-5 md:p-6 lg:gap-6 lg:p-10",
+        className,
       )}
     >
       {nodes}

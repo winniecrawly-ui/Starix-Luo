@@ -1,31 +1,29 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
-import { blogPosts } from "@/lib/content/blog";
-import { projectCases } from "@/lib/content/projects";
+import { locales } from "@/i18n/config";
+import { getBlogPosts } from "@/i18n/content/blog";
+import { getProjects } from "@/i18n/content/projects";
+import { portfolioFolders } from "@/lib/content/portfolioFolders";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const staticRoutes = [
+
+  const paths = [
     "",
     "/portfolio",
+    ...portfolioFolders.map((f) => `/portfolio/${f.slug}`),
     "/project",
+    ...getProjects("en").map((p) => `/project/${p.slug}`),
     "/blog",
+    ...getBlogPosts("en").map((p) => `/blog/${p.slug}`),
     "/about",
     "/contact",
-  ].map((path) => ({
-    url: `${site.url}${path}`,
-    lastModified,
-  }));
+  ];
 
-  const posts = blogPosts.map((p) => ({
-    url: `${site.url}/blog/${p.slug}`,
-    lastModified,
-  }));
-
-  const projects = projectCases.map((p) => ({
-    url: `${site.url}/project/${p.slug}`,
-    lastModified,
-  }));
-
-  return [...staticRoutes, ...posts, ...projects];
+  return locales.flatMap((locale) =>
+    paths.map((path) => ({
+      url: `${site.url}/${locale}${path}`,
+      lastModified,
+    })),
+  );
 }

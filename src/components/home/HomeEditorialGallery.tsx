@@ -2,8 +2,14 @@ import { homeGalleryShots } from "@/lib/content/homeGallery";
 import { EditorialGallery } from "./EditorialGallery";
 
 /**
- * 首页画廊 — 与 `EditorialGallery` 相同节奏；双竖图与横幅同宽。
+ * 首页画廊 — Bret Curry 大图节奏；作品文件夹页另用紧凑多列。
  */
 export function HomeEditorialGallery() {
-  return <EditorialGallery shots={homeGalleryShots} priority />;
+  return (
+    <EditorialGallery
+      shots={homeGalleryShots}
+      priority
+      preserveAspect
+    />
+  );
 }

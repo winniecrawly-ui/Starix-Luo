@@ -20,7 +20,21 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          "var(--font-montserrat)",
+          "var(--font-gilroy)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        serif: [
+          "var(--font-domaine)",
+          "ui-serif",
+          "Georgia",
+          "Times New Roman",
+          "serif",
+        ],
+        /** Caps / UI labels — Urth Gilroy */
+        caps: [
+          "var(--font-gilroy)",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",

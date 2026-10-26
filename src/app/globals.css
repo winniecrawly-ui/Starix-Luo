@@ -38,4 +38,32 @@ html {
   .hairline {
     border-width: 0.5px;
   }
+
+  .font-zh {
+    font-family:
+      var(--font-gilroy),
+      "PingFang SC",
+      "Hiragino Sans GB",
+      "Noto Sans SC",
+      "Microsoft YaHei",
+      ui-sans-serif,
+      system-ui,
+      sans-serif;
+  }
+
+  /** Urth Mag Domaine-like text optical sizing */
+  .font-urth-serif {
+    font-family: var(--font-domaine), ui-serif, Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+  }
+
+  /** Urth Mag Gilroy-like caps */
+  .font-urth-caps {
+    font-family: var(--font-gilroy), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
 }

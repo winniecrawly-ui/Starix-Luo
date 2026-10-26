@@ -24,7 +24,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "Simera-C Campaign",
     category: "Brand Campaign",
     year: "2025",
-    href: "/project/thypoch-simera-c-launch",
+    href: "/project/thypoch-simera",
     image:
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=2000&q=80",
     imageAlt: "Cinematic lens detail",
@@ -44,7 +44,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "IBC Amsterdam",
     category: "Exhibition & Events",
     year: "2025",
-    href: "/project/ibc-amsterdam",
+    href: "/project/thypoch-voyager",
     image:
       "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=2000&q=80",
     imageAlt: "Event lighting and crowd",
