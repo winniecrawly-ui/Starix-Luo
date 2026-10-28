@@ -77,6 +77,7 @@ export default async function ProjectIndexPage({ params }: Props) {
                     src={hero.src}
                     alt={project.title}
                     fill
+                    quality={75}
                     className="object-cover object-center transition-transform duration-[1100ms] ease-out group-hover:scale-[1.03]"
                     sizes="(min-width: 768px) 55vw, 100vw"
                     loading="lazy"

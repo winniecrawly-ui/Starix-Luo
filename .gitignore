@@ -36,3 +36,7 @@ tsconfig.tsbuildinfo
 *.tiff
 *.ARW
 *.arw
+.vercel-xdg-config/
+.vercel-xdg-data/
+.vercel
+.env*

@@ -36,6 +36,7 @@ export default async function BlogPage({ params }: Props) {
                 src={post.thumbnail}
                 alt={post.thumbnailAlt}
                 fill
+                quality={75}
                 className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
                 sizes="(min-width: 640px) 50vw, 100vw"
                 loading="lazy"

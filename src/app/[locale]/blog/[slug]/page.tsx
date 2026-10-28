@@ -60,6 +60,7 @@ function BlogFigureView({
           alt={figure.alt}
           fill
           priority={priority}
+          quality={80}
           className="object-cover object-center"
           sizes={sizes}
         />
@@ -179,6 +180,7 @@ export default async function BlogPostPage({ params }: Props) {
               alt={post.thumbnailAlt}
               fill
               priority
+              quality={80}
               className="object-cover object-center"
               sizes="(min-width: 900px) 900px, 100vw"
             />

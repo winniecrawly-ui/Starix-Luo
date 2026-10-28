@@ -117,7 +117,7 @@ function FolderCard({
             fill
             sizes="(min-width: 768px) 33vw, 100vw"
             priority={index === 0}
-            unoptimized
+            quality={80}
             className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20 transition-opacity duration-700 group-hover:from-black/70 group-hover:via-black/30" />

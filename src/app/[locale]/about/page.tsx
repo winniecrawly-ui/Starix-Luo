@@ -38,6 +38,7 @@ export default async function AboutPage({ params }: Props) {
               alt={selfie.alt}
               fill
               priority
+              quality={80}
               className="object-cover object-[42%_center]"
               sizes="(min-width: 768px) 58vw, 100vw"
             />

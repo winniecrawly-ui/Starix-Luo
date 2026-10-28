@@ -34,7 +34,7 @@ function IntrinsicImage({
           fill
           sizes={sizes}
           priority={priority}
-          unoptimized
+          quality={80}
           className="object-contain"
         />
       </div>
@@ -50,7 +50,7 @@ function IntrinsicImage({
         height={item.height}
         sizes={sizes}
         priority={priority}
-        quality={100}
+        quality={80}
         className="h-auto w-full max-w-full"
       />
     </div>

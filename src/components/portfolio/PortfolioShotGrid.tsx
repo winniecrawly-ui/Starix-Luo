@@ -20,8 +20,9 @@ export function PortfolioShotGrid({ shots }: { shots: EditorialShot[] }) {
                 width={shot.width}
                 height={shot.height}
                 sizes="(min-width: 1024px) 16vw, (min-width: 640px) 28vw, 46vw"
-                priority={index < 4}
-                unoptimized
+                priority={index < 2}
+                quality={75}
+                loading={index < 2 ? undefined : "lazy"}
                 className="h-auto w-full transition-opacity duration-500"
               />
             </div>

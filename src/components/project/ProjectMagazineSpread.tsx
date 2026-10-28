@@ -83,6 +83,7 @@ export function ProjectMagazineSpread({
               alt={`${project.title} — ${project.subtitle}`}
               fill
               priority
+              quality={80}
               className={
                 hero.landscape
                   ? "object-cover object-center"
@@ -166,6 +167,8 @@ export function ProjectMagazineSpread({
                   src={img.src}
                   alt={img.alt}
                   fill
+                  quality={80}
+                  loading="lazy"
                   className="object-cover object-center"
                   sizes={
                     img.landscape
